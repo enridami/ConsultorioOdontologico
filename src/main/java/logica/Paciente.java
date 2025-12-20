@@ -22,9 +22,8 @@ public class Paciente extends Persona{
     public Paciente() {
     }
 
-    public Paciente(boolean tiene_OS, String tipo_sangre, Responsable unResponsable, List<Turno> listaTurnos, String dni, String nombre, String apellido, String telefono, String direccion, Date fecha_nac) {
-        super(dni, nombre, apellido, telefono, direccion, fecha_nac);
-        
+    public Paciente(boolean tiene_OS, String tipo_sangre, Responsable unResponsable, List<Turno> listaTurnos, int id, String dni, String nombre, String apellido, String telefono, String direccion, Date fecha_nac) {
+        super(id, dni, nombre, apellido, telefono, direccion, fecha_nac);
         this.tiene_OS = tiene_OS;
         this.tipo_sangre = tipo_sangre;
         this.unResponsable = unResponsable;
