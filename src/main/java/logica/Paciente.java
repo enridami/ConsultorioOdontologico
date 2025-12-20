@@ -3,13 +3,19 @@ package logica;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Paciente extends Persona{
     //private int id_paciente;
     private boolean tiene_OS;
     private String tipo_sangre;
+    
+    @OneToOne
     private Responsable unResponsable;
+    
+    @OneToMany(mappedBy="pacien")
     private List<Turno> listaTurnos;
     
     

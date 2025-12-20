@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 
 @Entity
 public class Responsable extends Persona{
-    //private int id_resposable;
+    
     private String tipo_responsabilidad;
 
     public Responsable() {
