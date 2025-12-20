@@ -2,10 +2,11 @@ package logica;
 
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Entity;
 
-
+@Entity
 public class Odontologo extends Persona{
-    private int id_odontologo;
+    //private int id_odontologo;
     private String especialidad;
     private List<Turno> listaTurno;
     private Usuario unUsuario;
@@ -14,22 +15,15 @@ public class Odontologo extends Persona{
     public Odontologo() {
     }
 
-    public Odontologo(int id_odontologo, String especialidad, List<Turno> listaTurno, Usuario unUsuario, Horario unHorario, String dni, String nombre, String apellido, String telefono, String direccion, Date fecha_nac) {
+    public Odontologo(String especialidad, List<Turno> listaTurno, Usuario unUsuario, Horario unHorario, String dni, String nombre, String apellido, String telefono, String direccion, Date fecha_nac) {
         super(dni, nombre, apellido, telefono, direccion, fecha_nac);
-        this.id_odontologo = id_odontologo;
+       
         this.especialidad = especialidad;
         this.listaTurno = listaTurno;
         this.unUsuario = unUsuario;
         this.unHorario = unHorario;
     }
 
-    public int getId_odontologo() {
-        return id_odontologo;
-    }
-
-    public void setId_odontologo(int id_odontologo) {
-        this.id_odontologo = id_odontologo;
-    }
 
     public String getEspecialidad() {
         return especialidad;
