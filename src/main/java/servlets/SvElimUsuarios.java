@@ -36,7 +36,7 @@ public class SvElimUsuarios extends HttpServlet {
         
         control.borrarUsuario(id);
         
-        response.sendRedirect("verUsuarios.jsp");
+        response.sendRedirect("SvUsuarios");
     }
 
     
