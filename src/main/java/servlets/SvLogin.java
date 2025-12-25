@@ -9,12 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logica.Controladora;
-import logica.Usuario;
 
 
-@WebServlet(name = "SvEditUsuarios", urlPatterns = {"/SvEditUsuarios"})
-public class SvEditUsuarios extends HttpServlet {
-    
+@WebServlet(name = "SvLogin", urlPatterns = {"/SvLogin"})
+public class SvLogin extends HttpServlet {
+
     Controladora control = new Controladora();
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -22,38 +21,30 @@ public class SvEditUsuarios extends HttpServlet {
         
     }
 
-   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        int id = Integer.parseInt(request.getParameter("id"));
-        
-        Usuario usu = control.traerUsuario(id);
-        
-        HttpSession misession = request.getSession();
-        misession.setAttribute("usuEditar", usu);
-        
-        response.sendRedirect("editarUsuarios.jsp");        
+        processRequest(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String nombreUsu = request.getParameter("nombreusu");
+    
+        String usuario = request.getParameter("usuario");
         String contrasenia = request.getParameter("contrasenia");
-        String rol = request.getParameter("rol");
         
-        Usuario usu = (Usuario) request.getSession().getAttribute("usuEditar");
+        boolean validacion = false;
+        validacion = control.comprobarIngreso(usuario, contrasenia);
         
-        usu.setNombre_usuario(nombreUsu);
-        usu.setContrasenia(contrasenia);
-        usu.setRol(rol);
+        if (validacion == true){
+            HttpSession misession = request.getSession(true); // trae la sesion del usuario que esta actualmente
+            misession.setAttribute("usuario", usuario);
+            response.sendRedirect("index.jsp");
+        } else {
+            response.sendRedirect("loginError.jsp");
+        }
         
-        control.editarUsuario(usu);
-        
-        response.sendRedirect("SvUsuarios");
     }
 
     @Override
@@ -62,6 +53,3 @@ public class SvEditUsuarios extends HttpServlet {
     }
 
 }
-
-
-//1:13:00
